@@ -1,43 +1,29 @@
 import axios from "axios";
 import React from "react";
+import { Link, Outlet } from "react-router-dom";
+import UserList from "./routes/UserList";
 
 const App = () => {
-  const [users, setUsers] = React.useState<any[]>([]);
-
-  const getData = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((respose) => {
-        const data = respose.data;
-        setUsers(data);
-      })
-      .catch((e) => {
-        console.log("Error" + e);
-      });
-  };
-
-  React.useEffect(() => {
-    getData();
-  }, [users]);
-
   return (
-    <div>
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Body</th>
-        </tr>
-        {users.map((user, index) => {
-          return (
-            <tr key={index}>
-              <td>{user.id}</td>
-              <td>{user.title}</td>
-              <td>{user.body}</td>
-            </tr>
-          );
-        })}
-      </table>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        background: "grey",
+        opacity: 0.2,
+        height: screen.height,
+      }}
+    >
+      <div
+        style={{
+          width: "70%",
+          background: "white",
+        }}
+      >
+        <div style={{ padding: 20 }}>
+          <Link to={"/userlist"}>User list</Link>
+        </div>
+      </div>
     </div>
   );
 };
